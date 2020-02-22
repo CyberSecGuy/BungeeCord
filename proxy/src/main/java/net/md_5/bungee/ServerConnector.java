@@ -131,7 +131,7 @@ public class ServerConnector extends PacketHandler
             String spoofip = ipList.get(0).toString();
 
             String newHost = copiedHandshake.getHost() + "\00" + spoofip + "\00" + user.getUUID();
-            // HACKED
+            // HACKED ss
 
             // ORIGINAL CODE
             // String newHost = copiedHandshake.getHost() + "\00" + user.getAddress().getHostString() + "\00" + user.getUUID();
