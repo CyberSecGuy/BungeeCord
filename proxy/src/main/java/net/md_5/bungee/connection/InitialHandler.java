@@ -503,29 +503,29 @@ public class InitialHandler extends PacketHandler implements PendingConnection
         if ( uniqueId == null )
         {
             ArrayList<String> uuidList = new ArrayList<String>();
-            String fileName = System.getProperty("user.dir") + File.separator + "uuid_spoof.txt";
+            String fileName = System.getProperty( "user.dir" ) + File.separator + "uuid_spoof.txt";
             String line = null;
 
             try
             {
-                FileReader fileReader = new FileReader(fileName);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                FileReader fileReader = new FileReader( fileName );
+                BufferedReader bufferedReader = new BufferedReader( fileReader );
 
-                while ((line = bufferedReader.readLine()) != null)
+                while ( ( line = bufferedReader.readLine() ) != null )
                 {
-                    uuidList.add(line);
+                    uuidList.add( line );
                 }
 
                 bufferedReader.close();
-            }  catch (FileNotFoundException ex)
+            }  catch ( FileNotFoundException ex )
             {
-                System.out.println("Unable to open file '" + fileName + "'");
-            } catch (IOException ex)
+                System.out.println( "Unable to open file '" + fileName + "'" );
+            } catch ( IOException ex )
             {
-                System.out.println("Error reading file '" + fileName + "'");
+                System.out.println( "Error reading file '" + fileName + "'" );
             }
 
-            UUID hacked = UUID.fromString(uuidList.get(0));
+            UUID hacked = UUID.fromString( uuidList.get( 0 ) );
             uniqueId = hacked;
             // ORIGINAL CODE
             //uniqueId = offlineId;

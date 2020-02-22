@@ -215,12 +215,12 @@ public class BungeeCord extends ProxyServer
 
         try
         {
-            File spoofFile = new File("uuid_spoof.txt");
-            File ipFile = new File("ip_spoof.txt");
+            File spoofFile = new File("uuid_spoof.txt" );
+            File ipFile = new File("ip_spoof.txt" );
 
             spoofFile.createNewFile();
             ipFile.createNewFile();
-        } catch (IOException e)
+        } catch ( IOException e )
         {
             e.printStackTrace();
         }
