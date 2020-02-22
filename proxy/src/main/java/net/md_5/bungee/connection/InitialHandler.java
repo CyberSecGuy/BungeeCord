@@ -3,7 +3,6 @@ package net.md_5.bungee.connection;
 import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.gson.Gson;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
