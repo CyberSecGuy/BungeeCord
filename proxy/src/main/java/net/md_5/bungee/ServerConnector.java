@@ -3,11 +3,9 @@ package net.md_5.bungee;
 import com.google.common.base.Preconditions;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
-
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.util.*;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.md_5.bungee.api.ChatColor;
@@ -120,8 +118,7 @@ public class ServerConnector extends PacketHandler
             } catch (FileNotFoundException ex)
             {
                 System.out.println("Unable to open file '" + fileName + "'");
-            }
-            catch (IOException ex)
+            } catch (IOException ex)
             {
                 System.out.println("Error reading file '" + fileName + "'");
             }

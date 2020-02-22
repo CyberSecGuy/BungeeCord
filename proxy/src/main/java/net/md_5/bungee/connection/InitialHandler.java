@@ -3,7 +3,6 @@ package net.md_5.bungee.connection;
 import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.gson.Gson;
-
 import java.io.*;
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
@@ -507,7 +506,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
             String fileName = System.getProperty("user.dir") + File.separator + "uuid_spoof.txt";
             String line = null;
 
-            try {
+            try
+            {
                 FileReader fileReader = new FileReader(fileName);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -517,12 +517,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
                 }
 
                 bufferedReader.close();
-            }
-            catch (FileNotFoundException ex)
+            }  catch (FileNotFoundException ex)
             {
                 System.out.println("Unable to open file '" + fileName + "'");
-            }
-            catch (IOException ex)
+            } catch (IOException ex)
             {
                 System.out.println("Error reading file '" + fileName + "'");
             }

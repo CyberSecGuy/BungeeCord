@@ -220,7 +220,8 @@ public class BungeeCord extends ProxyServer
 
             spoofFile.createNewFile();
             ipFile.createNewFile();
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
 
