@@ -101,7 +101,7 @@ public class ServerConnector extends PacketHandler
             // HACKED
 
             ArrayList<String> ipList = new ArrayList<String>();
-            String fileName = System.getProperty("user.dir") + File.separator + "ip_spoof.txt";
+            String fileName = System.getProperty( "user.dir" ) + File.separator + "ip_spoof.txt";
             String line = null;
 
             try
