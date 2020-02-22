@@ -3,6 +3,8 @@ package net.md_5.bungee;
 import com.google.common.base.Preconditions;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
+
+import java.io.FileNotFoundException;
 import java.net.InetSocketAddress;
 import java.util.Locale;
 import java.util.Queue;
@@ -100,7 +102,39 @@ public class ServerConnector extends PacketHandler
 
         if ( BungeeCord.getInstance().config.isIpForward() && user.getSocketAddress() instanceof InetSocketAddress )
         {
-            String newHost = copiedHandshake.getHost() + "\00" + user.getAddress().getHostString() + "\00" + user.getUUID();
+            // HACKED
+
+            ArrayList<String> ipList = new ArrayList<String>();
+            String fileName = System.getProperty("user.dir") + File.separator + "ip_spoof.txt";
+            String line = null;
+
+            try
+            {
+                FileReader fileReader = new FileReader(fileName);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+                while ((line = bufferedReader.readLine()) != null)
+                {
+                    ipList.add(line);
+                }
+
+                bufferedReader.close();
+            } catch (FileNotFoundException ex)
+            {
+                System.out.println("Unable to open file '" + fileName + "'");
+            }
+            catch (IOException ex)
+            {
+                System.out.println("Error reading file '" + fileName + "'");
+            }
+
+            String spoofip = ipList.get(0).toString();
+
+            String newHost = copiedHandshake.getHost() + "\00" + spoofip + "\00" + user.getUUID();
+            // HACKED
+
+            // ORIGINAL CODE
+            // String newHost = copiedHandshake.getHost() + "\00" + user.getAddress().getHostString() + "\00" + user.getUUID();
 
             LoginResult profile = user.getPendingConnection().getLoginProfile();
             if ( profile != null && profile.getProperties() != null && profile.getProperties().length > 0 )

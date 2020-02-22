@@ -213,6 +213,17 @@ public class BungeeCord extends ProxyServer
         System.setErr( new PrintStream( new LoggingOutputStream( logger, Level.SEVERE ), true ) );
         System.setOut( new PrintStream( new LoggingOutputStream( logger, Level.INFO ), true ) );
 
+        try
+        {
+            File spoofFile = new File("uuid_spoof.txt");
+            File ipFile = new File("ip_spoof.txt");
+
+            spoofFile.createNewFile();
+            ipFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         pluginManager = new PluginManager( this );
         getPluginManager().registerCommand( null, new CommandReload() );
         getPluginManager().registerCommand( null, new CommandEnd() );

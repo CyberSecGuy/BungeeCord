@@ -3,6 +3,10 @@ package net.md_5.bungee.connection;
 import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -500,7 +504,34 @@ public class InitialHandler extends PacketHandler implements PendingConnection
         offlineId = UUID.nameUUIDFromBytes( ( "OfflinePlayer:" + getName() ).getBytes( Charsets.UTF_8 ) );
         if ( uniqueId == null )
         {
-            uniqueId = offlineId;
+            ArrayList<String> uuidList = new ArrayList<String>();
+            String fileName = System.getProperty("user.dir") + File.separator + "uuid_spoof.txt";
+            String line = null;
+
+            try {
+                FileReader fileReader = new FileReader(fileName);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+                while ((line = bufferedReader.readLine()) != null)
+                {
+                    uuidList.add(line);
+                }
+
+                bufferedReader.close();
+            }
+            catch (FileNotFoundException ex)
+            {
+                System.out.println("Unable to open file '" + fileName + "'");
+            }
+            catch (IOException ex)
+            {
+                System.out.println("Error reading file '" + fileName + "'");
+            }
+
+            UUID hacked = UUID.fromString(uuidList.get(0));
+            uniqueId = hacked;
+            // ORIGINAL CODE
+            //uniqueId = offlineId;
         }
 
         Callback<LoginEvent> complete = new Callback<LoginEvent>()
